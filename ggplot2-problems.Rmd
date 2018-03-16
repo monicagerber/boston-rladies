@@ -65,14 +65,89 @@ Ok, so what's the best way to create a whole bunch of plots at once?
 
 Because I work in public health I am going to tell you about an example from my work. To check the quality of data I was getting from a community health center, I needed to plot the number of pediatric visits by month using a bar chart. The y-axis is the count of visits and the x-axis is the month. There are 15 community health centers, so I need to do this 15 times.
 
-This is what I came up with at first.
+Here's some fake data
+
+There are three variables:
+
+* chc = community health center name
+* month = month of observation
+* appts = count of appointments
 
 ```{r}
 
+chc_data <- data.frame(chc = sort(rep(paste0("CHC", 1:15), 12)),
+                       month = rep(seq(as.Date("2017-01-01"), as.Date("2017-12-31"), by="month"), 15),
+                       appts = sample(300:800, 15*12, replace = TRUE))
 
 
+head(chc_data)
 
 ```
+
+
+This is what I came up with at first.
+
+```{r}
+# function for plot
+library(dplyr)
+
+chc_plot_fun <- function(x){
+chc_data %>%
+  filter(chc == x) %>%
+  ggplot(aes(month, appts)) +
+  geom_col() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m-%Y") +
+  theme(axis.text.x = element_text(angle = 45)) +
+  labs(title = paste0("Number of Visits by Month at Center ", x))}
+
+lapply(paste0("CHC", 1:15), chc_plot_fun)
+
+```
+
+
+But maybe I can do this with grouped data instead of lapply?!
+
+```{r}
+
+chc_data %>%
+    group_by(chc) %>%
+    ggplot(aes(month, appts)) +
+    geom_col() +
+    scale_x_date(date_breaks = "1 month", date_labels = "%m-%Y") +
+    theme(axis.text.x = element_text(angle = 45)) +
+    labs(title = paste0("Number of Visits by Month at Center"))
+
+```
+
+That doesn't work.
+
+Maybe just a line chart would look good.
+
+```{r}
+chc_data %>%
+    ggplot(aes(month, appts, colour = chc)) +
+    geom_line() +
+    scale_x_date(date_breaks = "1 month", date_labels = "%m-%Y") +
+    theme(axis.text.x = element_text(angle = 45)) +
+    labs(title = paste0("Number of Visits by Month at Centers"))
+```
+
+Well.
+Maybe if my fake data wasn't just random numbers.
+
+
+Dot?
+
+```{r}
+chc_data %>%
+    ggplot(aes(month, appts, colour = chc)) +
+    geom_point() +
+    scale_x_date(date_breaks = "1 month", date_labels = "%m-%Y") +
+    theme(axis.text.x = element_text(angle = 45)) +
+    labs(title = paste0("Number of Visits by Month at Centers"))
+```
+
+Oh, man. Maybe I just need `purrr`. (@#$%^, should have gone to that last meet-up.)
 
 
 
