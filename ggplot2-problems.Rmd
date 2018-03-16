@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 ```
 
+HTML version [here](https://rawgit.com/monicagerber/boston-rladies/master/ggplot2-problems.html).
+
 ## Problem 1
 
 Here's some fake data
@@ -57,5 +59,22 @@ Here's the new plot! (fill in at R-ladies meeting)
 ```{r}
 
 ```
+
+
+## Problem 2
+
+Ok, so what's the best way to create a whole bunch of plots at once?  
+
+Because I work in public health I am going to tell you about an example from my work. To check the quality of data I was getting from a community health center, I needed to plot the number of pediatric visits by month using a bar chart. The y-axis is the count of visits and the x-axis is the month. There are 15 community health centers, so I need to do this 15 times.
+
+This is what I came up with at first.
+
+```{r}
+
+
+
+
+```
+
 
 
