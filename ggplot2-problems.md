@@ -75,12 +75,12 @@ head(chc_data)
 ```
 
     ##    chc      month appts
-    ## 1 CHC1 2017-01-01   358
-    ## 2 CHC1 2017-02-01   704
-    ## 3 CHC1 2017-03-01   524
-    ## 4 CHC1 2017-04-01   428
-    ## 5 CHC1 2017-05-01   624
-    ## 6 CHC1 2017-06-01   467
+    ## 1 CHC1 2017-01-01   790
+    ## 2 CHC1 2017-02-01   573
+    ## 3 CHC1 2017-03-01   536
+    ## 4 CHC1 2017-04-01   619
+    ## 5 CHC1 2017-05-01   479
+    ## 6 CHC1 2017-06-01   747
 
 This is what I came up with at first.
 
@@ -232,3 +232,14 @@ chc_data %>%
 ![](ggplot2-problems_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
 Oh, man. Maybe I just need `purrr`. (@\#$%^, should have gone to that last meet-up.)
+
+Problem 3
+---------
+
+3d charts! :anguished:
+
+Do you have a better idea?
+
+Here's a figure I was asked to reproduce:
+
+![](images/3d-figure.png)

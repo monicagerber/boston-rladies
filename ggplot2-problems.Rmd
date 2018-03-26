@@ -150,4 +150,13 @@ chc_data %>%
 Oh, man. Maybe I just need `purrr`. (@#$%^, should have gone to that last meet-up.)
 
 
+## Problem 3
+
+3d charts! :anguished:
+
+Do you have a better idea?
+
+Here's a figure I was asked to reproduce:
+
+![](images/3d-figure.png)
 
